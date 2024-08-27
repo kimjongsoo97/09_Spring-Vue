@@ -24,8 +24,8 @@ import javax.sql.DataSource;
 // 그냥 /를 사용하면 webapp 폴더가 루트가 된다.
 @PropertySource("classpath:/application.properties")
 
-@MapperScan(basePackages = {"org.scoula.board.mapper"})
-@ComponentScan(basePackages = {"org.scoula.board.service"})// mapper의 위치 알려주기
+@MapperScan(basePackages = {"org.scoula.board.mapper","org.scoula.member.mapper"})
+@ComponentScan(basePackages = {"org.scoula.board.service","org.scoula.member.service"})// mapper의 위치 알려주기
 @Slf4j
 @EnableTransactionManagement
 public class RootConfig {

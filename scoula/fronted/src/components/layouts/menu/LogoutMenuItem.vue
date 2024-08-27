@@ -1,10 +1,14 @@
 <script setup>
 import {useRouter} from 'vue-router';
+import {useAuthStore} from "@/stores/auth";
+
+const store = useAuthStore();
 
 const router=useRouter();
 const logout=(e)=>{
+  store.logout();
   router.push('/');
-}
+};
 </script>
 <template>
   <a href="#" class="nav-link" @click.prevent="logout">

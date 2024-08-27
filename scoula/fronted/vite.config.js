@@ -22,6 +22,7 @@ export default defineConfig({
   },
   build:{
     outDir:'C:/fullstack/09_Spring+Vue/scoula/backend/src/main/webapp/resources',
+    emptyOutDir:true,
   },
 },
 )

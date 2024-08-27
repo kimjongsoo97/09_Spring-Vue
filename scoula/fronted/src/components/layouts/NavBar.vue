@@ -13,7 +13,7 @@ const toggleNavShow=()=>(state.isNavShow=!state.isNavShow);
   <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/">
-        <i class="fa fa-regular fa-house"></i>      Scoula
+        <i class="fa-solid fa-house"></i>  Scoula
       </router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"
               @click="toggleNavShow">

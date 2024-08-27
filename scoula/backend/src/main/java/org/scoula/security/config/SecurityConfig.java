@@ -92,10 +92,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     http
             .authorizeRequests()
             .antMatchers(HttpMethod.OPTIONS).permitAll()
-//            .antMatchers("/api/security/all").permitAll()
-//            .antMatchers("/api/security/member").access("hasRole('ROLE_MEMBER')")
-//            .antMatchers("/api/security/admin").access("hasRole('ROLE_ADMIN')")
+            .antMatchers(HttpMethod.POST,"/api/member").authenticated()
+            .antMatchers(HttpMethod.PUT,"/api/member","api/member/*/changepassword").authenticated()
             .anyRequest().permitAll();
+
+    http.httpBasic().disable()
+                .csrf().disable()
+                .formLogin().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

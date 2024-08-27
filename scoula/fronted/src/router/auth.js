@@ -1,3 +1,5 @@
+import {defineProps} from "vue";
+
 export default [
     {
         path:'/auth/login',
@@ -20,4 +22,5 @@ export default [
         component:()=> import('../pages/auth/ChangePasswordPage.vue')
     },
 
-]
+
+];
