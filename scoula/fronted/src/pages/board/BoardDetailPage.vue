@@ -14,17 +14,17 @@ const no = cr.params.no;
 const article=ref({});
 
 const back=()=>{
-  router.push({name:'board/list'});
+  router.push({name:'board/list',query:cr.query});
 };
 
 const update=()=>{
-  router.push({name:'board/update',params:{no:no}});
+  router.push({name:'board/update',params:{no:no},query:cr.query});
 };
 
 const remove=async ()=>{
   if(!confirm('삭제할까요?')) return;
   await api.delete(no);
-  router.push({name:'board/list'});
+  router.push({name:'board/list',query:cr.query});
 };
 
 const download=async (no)=>{
@@ -53,7 +53,7 @@ load();
       </div>
     </div>
     <hr />
-    <div class="attachments mb-3">
+    <div class="text-end">
       <div v-for="file in article.attaches" :key="file.no" class="attach">
         <span @click="download(file.no)" class="attach-link">
           <i class="fa-solid fa-paperclip"></i>

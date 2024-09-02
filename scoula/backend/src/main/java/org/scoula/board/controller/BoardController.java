@@ -31,10 +31,10 @@ public class BoardController {
     public ResponseEntity<Page> getList(PageRequest pageRequest) {
         return ResponseEntity.ok(service.getPage(pageRequest));
     }
-@GetMapping("")
-    public ResponseEntity<List<BoardDTO>> getList() {
-    return ResponseEntity.ok(service.getList());
-}
+//@GetMapping("")
+//    public ResponseEntity<List<BoardDTO>> getList() {
+//    return ResponseEntity.ok(service.getList());
+//}
 @GetMapping("/{no}")
     public ResponseEntity<BoardDTO> getById(@PathVariable Long no) {
     return ResponseEntity.ok(service.get(no));
