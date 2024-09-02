@@ -6,7 +6,7 @@ const avatar=`/api/member/${props.username}/avatar`;
 <template>
   <li class="nav-item">
     <router-link class="nav-link" to="/auth/profile">
-      <img :src="avatar" class="avatar avatar-sm/">
+      <img :src="avatar" class="avatar avatar-sm"/>
       {{username}}
     </router-link>
   </li>

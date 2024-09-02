@@ -16,7 +16,7 @@ const changePassword=reactive({
 const disableSubmit = computed(()=> !changePassword.oldPassword || !changePassword.newPassword || !changePassword.newPassword2);
 const error=ref('');
 const inputPassword=()=>(error.value='');
-const restError=()=>(error.value='');
+const resetError=()=>(error.value='');
 
 const onSubmit=async ()=>{
   if (changePassword.newPassword != changePassword.newPassword2) {
@@ -56,7 +56,7 @@ const onSubmit=async ()=>{
           새 비밀번호:
         </label>
         <input type="password" class="form-control" placeholder="새 비밀번호" v-model="changePassword.newPassword"
-        @input="restError"/>
+        @input="resetError"/>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">
@@ -64,7 +64,7 @@ const onSubmit=async ()=>{
           새 비밀번호 확인:
         </label>
         <input type="password" class="form-control" placeholder="새 비밀번호 확인" v-model="changePassword.newPassword2"
-               @input="restError"/>
+               @input="resetError"/>
       </div>
       <div v-if="error" class="text-danger">{{error}}</div>
       <button type="submit" class="btn btn-primary mt-4" :disabled="disableSubmit">

@@ -1,11 +1,11 @@
 <script setup>
 import {computed,reactive,ref} from "vue";
 import {useAuthStore} from "@/stores/auth";
-import {useRouter} from "vue-router";
+import {useRoute,useRouter} from "vue-router";
 
 const router=useRouter();
 const auth=useAuthStore();
-
+const cr= useRoute();
 const member=reactive({
   username:'',
   password:'',
@@ -19,7 +19,12 @@ const login=async ()=>{
   console.log(member);
   try{
     await auth.login(member);
-    router.push('/');
+    if (cr.query.next) {
+      router.push({name:cr.query.name});
+    }else {
+      router.push('/');
+    }
+
 
   }catch (e){
     console.log("에러=========",e);

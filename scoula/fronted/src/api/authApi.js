@@ -1,11 +1,11 @@
-import api from "@/api";
+import api from '@/api';
 
 const BASE_URL='/api/member';
 const headers={'Content-Type':'multipart/form-data'};
 
 export default {
     async checkUsername(username){
-        const { data } =await api.get(`${BASE_URL}/checkUsername/${username}`);
+        const { data } =await api.get(`${BASE_URL}/checkusername/${username}`);
         console.log('AUTH GET CHECKUSERNAME',data);
         return data;
     },
@@ -19,7 +19,7 @@ export default {
             formData.append('avatar',member.avatar);
         }
 
-        const {data}=await api.post(`${BASE_URL}/${member.username}` ,formData,headers);
+        const {data}=await api.post(BASE_URL ,formData,{headers});
 
         console.log('AUTH POST',data);
         return data;

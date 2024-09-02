@@ -1,6 +1,6 @@
 <script setup>
-import {reactive,ref}  from "vue";
-import {useRouter} from "vue-router";
+import {reactive,ref}  from 'vue';
+import {useRouter} from 'vue-router';
 import authApi from '@/api/authApi';
 
 const router=useRouter();

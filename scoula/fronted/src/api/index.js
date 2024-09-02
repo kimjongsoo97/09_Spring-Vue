@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import{useAuthStore} from "@/stores/auth";
+import {useAuthStore} from '@/stores/auth';
 import router from '@/router';
 
 const instance=axios.create({
@@ -9,10 +9,10 @@ const instance=axios.create({
 
 instance.interceptors.request.use(
     (config)=>{
-        const{getToken}=useAuthStore();
+        const {getToken} = useAuthStore();
         const token=getToken();
         if (token) {
-            config.headers['Authorization']=`Bearer ${token}`;
+            config.headers['Authorization'] = `Bearer ${token}`;
             console.log(config.headers.Authorization);
         }
         return config;
@@ -33,7 +33,7 @@ instance.interceptors.response.use(
     },
     async (error)=>{
         if (error.response?.status === 401) {
-            const{logout}=useAuthStore();
+            const {logout} = useAuthStore();
             logout();
             router.push('/auth/login?error=login_required');
             return Promise.reject({error:'로그인이 필요한 서비스입니다.'});

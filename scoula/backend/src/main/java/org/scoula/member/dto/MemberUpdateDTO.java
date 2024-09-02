@@ -16,7 +16,7 @@ public class MemberUpdateDTO {
 
     MultipartFile avatar;
 
-    public MemberVO toVo() {
+    public MemberVO toVO() {
         return MemberVO.builder()
                 .username(username)
                 .email(email)

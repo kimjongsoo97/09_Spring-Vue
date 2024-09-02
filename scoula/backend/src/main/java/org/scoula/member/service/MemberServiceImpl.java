@@ -77,7 +77,7 @@ public class MemberServiceImpl implements MemberService {
         if (!passwordEncoder.matches(member.getPassword(), vo.getPassword())) {
             throw new PasswordMissmatchException();
         }
-        mapper.update(member.toVo());
+        mapper.update(member.toVO());
         saveAvatar(member.getAvatar(),member.getUsername());
         return get(member.getUsername());
     }
@@ -86,7 +86,7 @@ public class MemberServiceImpl implements MemberService {
     public void changePassword(ChangePasswordDTO changePassword) {
         MemberVO member=mapper.get(changePassword.getUsername());
 
-        if (!passwordEncoder.matches(changePassword.getUsername(),member.getPassword())){
+        if (!passwordEncoder.matches(changePassword.getOldPassword(),member.getPassword())){
             throw new PasswordMissmatchException();
         }
 

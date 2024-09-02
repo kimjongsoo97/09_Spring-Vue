@@ -25,8 +25,12 @@ const onSubmit=async ()=>{
   }
   try{
     await authApi.update(member);
+
     error.value='';
+    auth.changeProfile(member);
+
     alert('정보를 수정하였습니다');
+
   }catch(e){
     error.value=e.response.data;
   }

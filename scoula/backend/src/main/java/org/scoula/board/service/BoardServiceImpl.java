@@ -6,6 +6,8 @@ import org.scoula.board.domain.BoardAttachmentVO;
 import org.scoula.board.domain.BoardVO;
 import org.scoula.board.dto.BoardDTO;
 import org.scoula.board.mapper.BoardMapper;
+import org.scoula.common.pagination.Page;
+import org.scoula.common.pagination.PageRequest;
 import org.scoula.common.util.UploadFiles;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,15 @@ public class BoardServiceImpl implements BoardService{
     //생성자가 하나라면 주입가능
     final private BoardMapper mapper;
     private final static String BASE_DIR="c:/upload/board";
+
+    @Override
+    public Page<BoardDTO> getPage(PageRequest pageRequest) {
+        List<BoardVO> boards= mapper.getPage(pageRequest);
+        int totalCount = mapper.getTotalCount();
+
+        return Page.of(pageRequest,totalCount,boards.stream().map(BoardDTO::of).toList());
+
+    }
 
     @Override
     public List<BoardDTO> getList() {
@@ -60,9 +71,15 @@ return get(boardVo.getNo());
 
     @Override
     public BoardDTO update(BoardDTO board) {
+    log.info("update....."+board);
+    BoardVO boardVo=board.toVo();
+     log.info("update......"+boardVo);
+    mapper.update(boardVo);
 
-     log.info("update......"+board);
-    mapper.update(board.toVo());
+    List<MultipartFile> files=board.getFiles();
+    if (files!=null&&!files.isEmpty()) {
+        upload(board.getNo(),files);
+    }
     return get(board.getNo());
             }
 
